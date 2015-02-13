@@ -1,0 +1,7 @@
+/* CSS definition file containing site stylesheet */
+body {}
+#header {width: 100%; margin-left:5% auto; text-align:left; background-color: #002166;
+    font-size: 27.03pt; color: #0059a6; text-decoration: none;}
+#header a{text-decoration: none; color: #fff;}
+#content {width:100%; margin-left:5% auto;margin-right:5% auto;}
+#footer {font-size: small; font-style:italic;text-align:center;}
