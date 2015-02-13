@@ -13,6 +13,9 @@ class Application extends CI_Controller
     protected $navbarChoices = array(
         'Home' => '/', 'News' => '/news', 'Anime' => '/anime',
         'Projects' => '/projects', 'Stream' => '/stream');
+    protected $footerBarChoices = array(
+        'About' => '/about', 'Contact Us' => '/contact',
+        'Terms of Service' => '/tos', 'Privacy Policy' => '/privacy' );
     
     /**
      * Constructor.
@@ -33,6 +36,7 @@ class Application extends CI_Controller
 	$this->data['menubar'] = build_menu_bar($this->navbarChoices);
 	$this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
 	$this->data['data'] = &$this->data;
+        $this->data['footer'] = build_footer_bar($this->footerBarChoices);
 	$this->parser->parse('_template', $this->data);
     }
     

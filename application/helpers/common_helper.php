@@ -65,5 +65,19 @@ function build_menu_bar($choices)
     $result .= '</ul>';
     return $result;
 }
+
+/**
+ * Build an unordered list of linked items, such as used for a footer bar
+ * Assumption: That the URL helper has been loaded.
+ * @param type $choice Array of name => link pairs
+ */
+function build_footer_bar($choices)
+{
+    $result = 'Copyright &copy;' . '<a href="mailto:uoi100x@gmail.com">'.
+            'Calvin Truong 2014' . '</a>';
+    foreach($choices as $name => $link)
+        $result .= ' | ' . anchor($link, $name);
+    return $result;
+}
 /* End of file common_helper.php */
 /* Location: application/helpers/common_helper.php */

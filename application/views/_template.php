@@ -21,7 +21,7 @@
                 {content}
             </div>
             <div id="footer" class="span12">
-                Copyright &copy; Calvin Truong 2014,  <a href="mailto:uoi100x@gmail.com">Me</a>.
+                {footer}
             </div>
         </div>
         <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> 
