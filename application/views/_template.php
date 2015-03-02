@@ -8,12 +8,14 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <span class="myhead">RPG-Solo-Grinder</span>
+                <span class="myhead">
+                    <img src="/assets/images/logo.png"/>
+                    <a href="/login"> Login </a>
+                </span>
                 <span class="mynav">
                     {menubar}
                 </span>
             </div>
-            <div class="alone"></div>
             <div id="content">
                 {content}
             </div>
@@ -21,7 +23,5 @@
                 {footer}
             </div>
         </div>
-        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script> 
-        <script type="text/javascript" src="js/lightbox.min.js"></script> 
     </body>
 </html>
