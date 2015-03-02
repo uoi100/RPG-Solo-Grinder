@@ -1,0 +1,29 @@
+/* CSS definition file containing site stylesheet */
+body {}
+.mynav {
+    width: 80%;
+    margin-top: 55px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align:left;
+    background-color: #002166;
+    font-size: 27.03pt;
+    color: #0059a6;
+    text-decoration: none;
+    display: inline-block;
+}
+.mynav a{text-decoration: none; color: #fff;}
+.mynav a:hover{color: #E13300;}
+.myhead { position: absolute;}
+.myhead a{ position: relative; top: -10px; left: 440 px; }
+#content {
+    width:80%;
+    margin-top:1%;
+    margin-left:10%;
+    margin-right:10%;
+    text-align: left;
+    background-color: #D6DBE8;
+    color: #FFFFFF;
+    display: inline-block;
+}
+#footer {font-size: small; font-style:italic;text-align:center;}

@@ -59,10 +59,9 @@ function endsWith($string, $ending)
  */
 function build_menu_bar($choices)
 {
-    $result = '<ul>';
+    $result = '';
     foreach ($choices as $name => $link)
-	$result .= '<li>' . anchor($link, $name) . '</li>';
-    $result .= '</ul>';
+	$result .= anchor($link, $name) . ' ';
     return $result;
 }
 
