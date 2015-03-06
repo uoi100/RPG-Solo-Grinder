@@ -26,6 +26,7 @@ class Application extends CI_Controller
         parent::__construct();
         $this->data = array();
         $this->data['pagetitle'] = 'RPG-Solo-Grinder';
+        $this->errors = array();
     }
     
     /**

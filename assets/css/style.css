@@ -21,9 +21,19 @@ body {}
     margin-top:1%;
     margin-left:10%;
     margin-right:10%;
+    margin-bottom: 1%;
     text-align: left;
     background-color: #D6DBE8;
     color: #FFFFFF;
     display: inline-block;
 }
+.login{
+    padding: 1%;
+}
+.login>.errors{
+    color: red;
+    font-weight:bold;
+    font-size: large;
+}
+
 #footer {font-size: small; font-style:italic;text-align:center;}
