@@ -9,7 +9,7 @@
         <div id="wrapper">
             <div id="header">
                 <span class="myhead">
-                    <img src="/assets/images/logo.png"/>
+                    <a href="/"><img src="/assets/images/logo.png"/></a>
                     <a href="/login"> Login </a>
                 </span>
                 <span class="mynav">
