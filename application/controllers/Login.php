@@ -111,7 +111,7 @@ class Login extends Application {
         }
         
         // Login
-        return;
+        redirect('/admin');
     }
 }
 

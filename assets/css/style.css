@@ -17,6 +17,7 @@ body {}
 .myhead { position: absolute;}
 .myhead a{ position: relative; top: -10px; left: 440 px; }
 #content {
+    padding: 1%;
     width:80%;
     margin-top:1%;
     margin-left:10%;
@@ -26,9 +27,6 @@ body {}
     background-color: #D6DBE8;
     color: #FFFFFF;
     display: inline-block;
-}
-.login{
-    padding: 1%;
 }
 .login>.errors{
     color: red;
