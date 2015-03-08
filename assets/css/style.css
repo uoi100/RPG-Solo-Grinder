@@ -13,9 +13,13 @@ body {}
     display: inline-block;
 }
 .mynav a{text-decoration: none; color: #fff;}
-.mynav a:hover{color: #E13300;}
+.mynav a:hover{color: #E13300; background-color: #41BE7B;}
 .myhead { position: absolute;}
-.myhead a{ position: relative; top: -10px; left: 440 px; }
+.myhead a{
+    position: relative;
+    top: -10px;
+    left: 440 px;
+}
 #content {
     padding: 1%;
     width:80%;
@@ -32,6 +36,9 @@ body {}
     color: red;
     font-weight:bold;
     font-size: large;
+}
+.adminBtns a{
+    padding-right: 1%;
 }
 
 #footer {font-size: small; font-style:italic;text-align:center;}

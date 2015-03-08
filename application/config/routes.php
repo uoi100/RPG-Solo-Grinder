@@ -89,5 +89,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['a/(:any)'] = 'admin/select/$1';
+$route['a/create/(:any)'] = 'admin/create/$1';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
