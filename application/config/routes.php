@@ -89,5 +89,12 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['a/(:any)'] = 'admin/select/$1';
+$route['a/create/(:any)'] = 'admin/create/$1';
+$route['a/create/confirm/(:any)'] = 'admin/confirm/$1';
+$route['a/modify/(:any)/(:num)'] = 'admin/modify/$1/$2';
+$route['a/modify/confirm/(:any)/(:num)'] = 'admin/modifyConfirm/$1/$2';
+$route['a/delete/(:any)/(:num)'] = 'admin/delete/$1/$2';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

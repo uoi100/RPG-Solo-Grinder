@@ -56,8 +56,10 @@ class Stream extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'stream';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->groupCategory('streams');
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 

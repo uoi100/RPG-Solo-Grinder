@@ -11,8 +11,8 @@ class Application extends CI_Controller
     protected $data = array();      // parameters for view components
     protected $id;                  // identify for our content
     protected $navbarChoices = array(
-        'Home' => '/', 'News' => '/news', 'Anime' => '/anime',
-        'Projects' => '/projects', 'Stream' => '/stream');
+        'Home' => '/', 'News' => '/news', 'Games' => '/games',
+        'Anime' => '/anime', 'Projects' => '/projects', 'Stream' => '/stream');
     protected $footerBarChoices = array(
         'About' => '/about', 'Contact Us' => '/contact',
         'Terms of Service' => '/tos', 'Privacy Policy' => '/privacy' );
@@ -26,6 +26,7 @@ class Application extends CI_Controller
         parent::__construct();
         $this->data = array();
         $this->data['pagetitle'] = 'RPG-Solo-Grinder';
+        $this->errors = array();
     }
     
     /**
