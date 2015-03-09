@@ -105,7 +105,7 @@ class Admin extends Application {
                 $category == 'streams'){
                 $blog = '<tr>'
                         . '<th>ID</th>'
-                        . '<th>Date</th>'
+                        . '<th>Last Modified</th>'
                         . '<th>Title</th>'
                         . '<th>Subtitle</th>'
                         . '<th>Description</th>'
@@ -173,7 +173,7 @@ class Admin extends Application {
             $this->data['fsubmit'] = makeSubmitButton('Create Blog',
                     'Click here to validate the blog data', 'btn-success');
             
-            $this->data['pagebody'] = 'blog_edit';
+            $this->data['pagebody'] = 'blog_create';
             $this->render();
         }
         
@@ -212,7 +212,83 @@ class Admin extends Application {
         
         function modify($blogCategory, $blogID){
             $blog = $this->blogbase->get($blogID, $blogCategory);
-            $this->formBlog($blog, $blogCategory);
+            $this->modifyBlog($blog);
+        }
+        
+        function modifyBlog($blog){
+            $this->data['category'] = $blog->Category;
+            $this->data['blogID'] = $blog->ID;
+            //Format any errors
+            $message = '';
+            if(count($this->errors) > 0){
+                foreach($this->errors as $booboo)
+                    $message .= $booboo . BR;
+            }
+            $this->data['message'] = $message;
+            
+            // Create form inputs
+            $this->data['fid'] = makeTextField('ID#',
+                    'id',
+                    $blog->ID,
+                    "Unique blog identifier, system-assigned",
+                    10,
+                    10,
+                    true);
+            $this->data['fcategory'] = makeTextField('Category',
+                    'category',
+                    $blog->Category,
+                    "The category that this blog will be created on.",
+                    10,
+                    10,
+                    true);
+            $this->data['fdate'] = makeTextField('Date',
+                    'date',
+                    $blog->Date,
+                    "Current date that this blog was created.",
+                    20,
+                    20,
+                    true);
+            $this->data['ftitle'] = makeTextField('Title',
+                    'title',
+                    $blog->Title);
+            $this->data['fsubtitle'] = makeTextField('Subtitle',
+                    'subtitle',
+                    $blog->Subtitle);
+            $this->data['fdesc'] = makeTextArea('Description',
+                    'desc',
+                    $blog->Description);
+            $this->data['fsubmit'] = makeSubmitButton('Modify Blog',
+                    'Click here to validate the blog data', 'btn-success');
+            
+            $this->data['pagebody'] = 'blog_modify';
+            $this->render();
+        }
+        
+        function modifyConfirm($category, $blogID){
+            $blog = $this->blogbase->create();
+            // Extract submitted fields
+            $blog->ID = $blogID;
+            $blog->Category = $category;
+            $blog->Date = $this->input->post('date');
+            $blog->Title = $this->input->post('title');
+            $blog->Subtitle = $this->input->post('subtitle');
+            $blog->Description = $this->input->post('desc');
+            
+            //Validation
+            if(empty($blog->Title))
+                $this->errors[] = 'Title field cannot be empty.';
+            if(empty($blog->Subtitle))
+                $this->errors[] = 'Subtitle field cannot be empty.';
+            if(empty($blog->Description))
+                $this->errors[] = 'Description field cannot be empty.';
+            
+            if(count($this->errors) > 0){
+                $this->formBlog($blog, $category);
+                return;
+            }
+            
+            $this->blogbase->update($blog);
+            redirect('/a/' . $category);
         }
         
         function delete($blogCategory, $blogID){
