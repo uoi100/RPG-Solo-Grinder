@@ -56,8 +56,10 @@ class Welcome extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'welcome';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->allDesc();
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 

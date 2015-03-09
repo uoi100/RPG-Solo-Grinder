@@ -56,8 +56,10 @@ class Anime extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'anime';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->groupCategory('anime');
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 

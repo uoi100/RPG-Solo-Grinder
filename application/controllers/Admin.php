@@ -64,7 +64,9 @@ class Admin extends Application {
          * pressed, display the appropriate blogs under that category.
          */
         function select($selection = null){
+            
             if($selection == 'news' ||
+                    $selection == 'games' ||
                     $selection == 'anime' ||
                     $selection == 'projects' ||
                     $selection == 'streams')
@@ -97,6 +99,7 @@ class Admin extends Application {
             $blog = '';
             
             if($category == 'news' ||
+                $category == 'games' ||
                 $category == 'anime' ||
                 $category == 'projects' ||
                 $category == 'streams'){
@@ -106,6 +109,8 @@ class Admin extends Application {
                         . '<th>Title</th>'
                         . '<th>Subtitle</th>'
                         . '<th>Description</th>'
+                        . '<th></th>'
+                        . '<th></th>'
                         . '</tr>';
                 $this->data['blogs'] = $this->blogbase->groupCategory($category);
                 $this->data['btnAdd'] = '<a href="/a/create/' . $category .
@@ -200,7 +205,7 @@ class Admin extends Application {
                 $this->blogbase->add($blog);
             }
             else $this->blogbase->update($blog);
-            redirect('/admin');
+            redirect('/a/' . $category);
         }
 }
 

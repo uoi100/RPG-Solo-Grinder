@@ -56,8 +56,10 @@ class Games extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'games';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->groupCategory('games');
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 

@@ -11,7 +11,7 @@ In the admin page you are able to: <br/>
 </ol>
 
 <div class="adminBtns">
-    <a href="/a/news"/>News</a><a href="/a/anime"/>Anime</a><a href="/a/projects"/>Projects</a><a href="/a/streams"/>Streams</a>
+    <a href="/a/news">News</a><a href="/a/games">Games</a><a href="/a/anime">Anime</a><a href="/a/projects">Projects</a><a href="/a/streams">Streams</a>
 </div>
 
 <table cols=""" border="0">
@@ -23,6 +23,8 @@ In the admin page you are able to: <br/>
         <td>{Title}</td>
         <td>{Subtitle}</td>
         <td>{Description}</td>
+        <td><a href="/a/modify/{ID}">Modify</a></td>
+        <td><a href="/a/delete/{ID}">Delete</a></td>
         <td></td>
     {/blogs}
 </table>

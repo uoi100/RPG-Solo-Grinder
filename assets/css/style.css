@@ -41,4 +41,23 @@ body {}
     padding-right: 1%;
 }
 
+.blog{
+    padding: 1%;
+    background-color: #7987AB;
+    width: auto;
+}
+
+.blog>.blogTitle{
+    font-size: 25pt;
+    color: #FFFFFF;
+}
+.blog>.blogSub{
+    font-size: 15pt;
+    color: #D0D0D0;
+}
+
+.blog>.blogDate{
+    font-size: 10pt;
+}
+
 #footer {font-size: small; font-style:italic;text-align:center;}

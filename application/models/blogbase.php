@@ -24,5 +24,12 @@ class Blogbase extends MY_Model2{
         $query = $this->db->get($this->_tableName);
         return $query->result();
     }
+    
+    // Return all records as an array of objects
+    function allDesc() {
+        $this->db->order_by($this->_keyField, 'desc');
+        $query = $this->db->get($this->_tableName);
+        return $query->result();
+    }
 }
 
