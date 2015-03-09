@@ -177,6 +177,7 @@ class Admin extends Application {
             $this->render();
         }
         
+        // When the user clicks the submit button when creating a blog
         function confirm($category){
             $blog = $this->blogbase->create();
             // Extract submitted fields
@@ -210,11 +211,13 @@ class Admin extends Application {
             redirect('/a/' . $category);
         }
         
+        // Triggers when the user wants to modify a blog
         function modify($blogCategory, $blogID){
             $blog = $this->blogbase->get($blogID, $blogCategory);
             $this->modifyBlog($blog);
         }
         
+        // Displays the modify blog form
         function modifyBlog($blog){
             $this->data['category'] = $blog->Category;
             $this->data['blogID'] = $blog->ID;
@@ -264,6 +267,7 @@ class Admin extends Application {
             $this->render();
         }
         
+        // confirms the modification made to the form.
         function modifyConfirm($category, $blogID){
             $blog = $this->blogbase->create();
             // Extract submitted fields
@@ -291,6 +295,7 @@ class Admin extends Application {
             redirect('/a/' . $category);
         }
         
+        // Deletes the selected form.
         function delete($blogCategory, $blogID){
             $this->blogbase->delete($blogID, $blogCategory);
             redirect('/a/' . $blogCategory);
