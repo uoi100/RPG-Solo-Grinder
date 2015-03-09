@@ -56,8 +56,10 @@ class News extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'news';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->groupCategory('news');
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 
