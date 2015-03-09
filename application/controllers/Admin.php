@@ -64,18 +64,35 @@ class Admin extends Application {
          * pressed, display the appropriate blogs under that category.
          */
         function select($selection = null){
-            if($selection == 'news')
+            if($selection == 'news' ||
+                    $selection == 'anime' ||
+                    $selection == 'projects' ||
+                    $selection == 'streams')
             {
                 $this->data['categoryblog'] = $this->genBlogs($selection);
             }
             else
+            {
                 $this->data['categoryblog'] = '';
+                $this->data['blogs'] = '';
+                $this->data['/blogs'] = '';
+                $this->data['ID'] = '';
+                $this->data['Date'] = '';
+                $this->data['Title'] = '';
+                $this->data['Subtitle'] = '';
+                $this->data['Description'] = '';
+                $this->data['btnAdd'] = '';
+            }
             
             $this->data['pagebody'] = 'admin';
             
             $this->render();
         }
         
+        /*
+         * Generates a list of all the available blogs and displays it to the
+         * admin. These blogs can be edited and modified from here.
+         */
         function genBlogs($category){
             $blog = '';
             
@@ -87,13 +104,13 @@ class Admin extends Application {
                         . '<th>ID</th>'
                         . '<th>Date</th>'
                         . '<th>Title</th>'
-                        . '<th></th>'
+                        . '<th>Subtitle</th>'
+                        . '<th>Description</th>'
                         . '</tr>';
-                $this->data['blogs'] = $this->blogbase->all();
+                $this->data['blogs'] = $this->blogbase->groupCategory($category);
                 $this->data['btnAdd'] = '<a href="/a/create/' . $category .
                         '">Create Blog</a>';
-            }
-            
+            }    
             
             return $blog;
         }
@@ -101,18 +118,42 @@ class Admin extends Application {
         // Add a new blog
         function create($category){
             $blog = $this->blogbase->create();
-            $this->formBlog($blog);
+            $this->formBlog($blog, $category);
         }
         
-        function formBlog($blog){
-            $this->data['message'] = 'error messages go here ;)';
+        // Displays the form for the admin to enter to create a new blog
+        function formBlog($blog, $category){
+            $date = date("Y-m-d G:i:s", time());
+            $this->data['category'] = $category;
+            //Format any errors
+            $message = '';
+            if(count($this->errors) > 0){
+                foreach($this->errors as $booboo)
+                    $message .= $booboo . BR;
+            }
+            $this->data['message'] = $message;
             
+            // Create form inputs
             $this->data['fid'] = makeTextField('ID#',
                     'id',
                     $blog->ID,
                     "Unique blog identifier, system-assigned",
                     10,
                     10,
+                    true);
+            $this->data['fcategory'] = makeTextField('Category',
+                    'category',
+                    $category,
+                    "The category that this blog will be created on.",
+                    10,
+                    10,
+                    true);
+            $this->data['fdate'] = makeTextField('Date',
+                    'date',
+                    $date,
+                    "Current date that this blog was created.",
+                    20,
+                    20,
                     true);
             $this->data['ftitle'] = makeTextField('Title',
                     'title',
@@ -123,14 +164,43 @@ class Admin extends Application {
             $this->data['fdesc'] = makeTextArea('Description',
                     'desc',
                     $blog->Description);
-            $this->data['fdesc'] = makeTextArea('Description',
-                    'desc',
-                    $blog->Description);
             $this->data['fsubmit'] = makeSubmitButton('Create Blog',
                     'Click here to validate the blog data', 'btn-success');
             
             $this->data['pagebody'] = 'blog_edit';
             $this->render();
+        }
+        
+        function confirm($category){
+            $blog = $this->blogbase->create();
+            // Extract submitted fields
+            $blog->Category = $category;
+            $blog->Date = $this->input->post('date');
+            $blog->Title = $this->input->post('title');
+            $blog->Subtitle = $this->input->post('subtitle');
+            $blog->Description = $this->input->post('desc');
+            
+            //Validation
+            if(empty($blog->Title))
+                $this->errors[] = 'Title field cannot be empty.';
+            if(empty($blog->Subtitle))
+                $this->errors[] = 'Subtitle field cannot be empty.';
+            if(empty($blog->Description))
+                $this->errors[] = 'Description field cannot be empty.';
+            
+            if(count($this->errors) > 0){
+                $this->formBlog($blog, $category);
+                return;
+            }
+            
+            // Save stuff
+            if(empty($blog->id))
+            {
+                $blog->ID = $this->blogbase->highest() + 1;
+                $this->blogbase->add($blog);
+            }
+            else $this->blogbase->update($blog);
+            redirect('/admin');
         }
 }
 

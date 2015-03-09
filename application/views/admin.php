@@ -18,9 +18,11 @@ In the admin page you are able to: <br/>
     {categoryblog}
     {blogs}
     <tr>
-        <td>{id}</td>
-        <td>{date}</td>
-        <td>{title}</td>
+        <td>{ID}</td>
+        <td>{Date}</td>
+        <td>{Title}</td>
+        <td>{Subtitle}</td>
+        <td>{Description}</td>
         <td></td>
     {/blogs}
 </table>
