@@ -56,8 +56,10 @@ class Projects extends Application {
 	 */
 	public function index()
 	{
-                $this->data['pagebody'] = 'projects';
-		$this->render();
+            $this->data['blogs'] = $this->blogbase->groupCategory('projects');
+            
+            $this->data['pagebody'] = 'blog';
+            $this->render();
 	}
 }
 

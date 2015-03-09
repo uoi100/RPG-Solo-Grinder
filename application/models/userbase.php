@@ -3,7 +3,7 @@
 /* 
  * This is a "CMS" model for projectrpgsologrinder
  */
-class Projectrpgsologrinder extends MY_Model{
+class Userbase extends MY_Model{
     
     // Constructor
     public function __construct(){

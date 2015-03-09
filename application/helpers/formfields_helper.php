@@ -118,7 +118,7 @@ if (!function_exists('makeSubmitButton')) {
  */
 if (!function_exists('makeTextArea')) {
 
-    function makeTextArea($label, $name, $value, $explain = "", $maxlen = 40, $size = 25, $rows = 5, $disabled = false) {
+    function makeTextArea($label, $name, $value, $explain = "", $maxlen = -1, $size = 25, $rows = 5, $disabled = false) {
         $height = (int) (strlen($value) / 80) + 1;
         if ($rows < $height)
             $rows = $height;

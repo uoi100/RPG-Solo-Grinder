@@ -56,7 +56,7 @@ class Login extends Application {
      */
     public function index()
     {
-        $user = $this->projectrpgsologrinder->create();
+        $user = $this->userbase->create();
         $this->formLogin($user);
     }
     
@@ -84,7 +84,7 @@ class Login extends Application {
     
     //Process user login
     function confirm(){
-        $user = $this->projectrpgsologrinder->create();
+        $user = $this->userbase->create();
         // Extract submitted fields
         $user->Username = $this->input->post('username');
         $user->Password = $this->input->post('password');
@@ -92,12 +92,12 @@ class Login extends Application {
         // validation
         if(empty($user->Username))
             $this->errors[] = 'Username field cannot be empty.';
-        else if(!$this->projectrpgsologrinder->exists($user->Username))
+        else if(!$this->userbase->exists($user->Username))
             $this->errors[] = 'Username does not exist.';
         else
         {
             if(!empty($user->Password)){
-                if(!$this->projectrpgsologrinder->exists($user->Password))
+                if(!$this->userbase->exists($user->Password))
                     $this->errors[] = 'Incorrect Password.';
             }
         }
@@ -111,7 +111,7 @@ class Login extends Application {
         }
         
         // Login
-        redirect('/admin');
+        redirect('/a/news');
     }
 }
 
