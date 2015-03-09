@@ -138,6 +138,7 @@ class Admin extends Application {
             }
             $this->data['message'] = $message;
             
+            
             // Create form inputs
             $this->data['fid'] = makeTextField('ID#',
                     'id',
@@ -179,6 +180,7 @@ class Admin extends Application {
         function confirm($category){
             $blog = $this->blogbase->create();
             // Extract submitted fields
+            $blog->ID = intval($this->input->post('id'));
             $blog->Category = $category;
             $blog->Date = $this->input->post('date');
             $blog->Title = $this->input->post('title');
@@ -199,13 +201,23 @@ class Admin extends Application {
             }
             
             // Save stuff
-            if(empty($blog->id))
+            if(empty($blog->ID))
             {
                 $blog->ID = $this->blogbase->highest() + 1;
                 $this->blogbase->add($blog);
             }
             else $this->blogbase->update($blog);
             redirect('/a/' . $category);
+        }
+        
+        function modify($blogCategory, $blogID){
+            $blog = $this->blogbase->get($blogID, $blogCategory);
+            $this->formBlog($blog, $blogCategory);
+        }
+        
+        function delete($blogCategory, $blogID){
+            $this->blogbase->delete($blogID, $blogCategory);
+            redirect('/a/' . $blogCategory);
         }
 }
 
